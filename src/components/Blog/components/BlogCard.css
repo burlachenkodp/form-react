@@ -1,0 +1,10 @@
+.post {
+    border: 1px solid red;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.deleteButton svg {
+    font-size: 40px;
+}
