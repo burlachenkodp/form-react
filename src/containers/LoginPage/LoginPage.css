@@ -1,0 +1,29 @@
+.loginForm {
+    
+    background-color: rgb(170, 169, 169);
+    padding: 10px;
+    z-index: 100;
+    max-width: 350px;
+    text-align: center;
+    margin: 0 auto;
+  }
+  
+  
+  
+  .loginFormInput {
+    width: 100%;
+    margin-bottom: 15px;
+    padding: 2px 5px;
+    border-radius: 8px;
+    border: 1px solid rgb(139, 136, 136);
+  }
+  .loginFormInput:focus::placeholder {
+      color: transparent;
+  }
+
+  .loginForm button {
+      width: 100%;
+  }
+  
+  
+ 

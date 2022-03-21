@@ -8,3 +8,11 @@
 .deleteButton svg {
     font-size: 40px;
 }
+
+.postControl {
+    display: flex;
+    align-items: center;
+}
+.postControl button {
+    padding: 0;
+}

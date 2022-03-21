@@ -1,14 +1,28 @@
 import React from "react";
-import './Header.css'
+import { NavLink } from "react-router-dom";
+import "./Header.css";
+import LogoutIcon from "@mui/icons-material/Logout";
 
-export const Header = () => {
+export const Header = ({ isLoggedIn, setIsLoggedIn, userName }) => {
+  const handleLogOut = () => {
+    localStorage.setItem("isLoggedIn", false)
+
+    setIsLoggedIn(false);
+  };
+
   return (
     <header>
-      <nav>
-        <a href="#first">home</a>
-        <a href="#first">about</a>
-        <a href="#first">contact</a>
-      </nav>
+      {isLoggedIn ? (
+        <nav>
+          <h1>Добро пожаловать, {userName}</h1>
+          <NavLink to="/login" className="usual-link" onClick={handleLogOut}>
+            <LogoutIcon />
+            Выход
+          </NavLink>
+        </nav>
+      ) : (
+        "Добро пожаловать, незнакомец!"
+      )}
     </header>
   );
 };

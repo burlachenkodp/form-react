@@ -20,10 +20,34 @@ button {
   border: none;
   cursor: pointer;
   background-color: unset;
+  font-size: 16px;
+}
+input, textarea {
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  outline: unset;
+  border: 0;
+
 
 }
 main {
   padding: 10px;
   min-height: calc(100vh - 100px);
+
+}
+
+.blackBtn {
+  padding: 5px 15px;
+  border-radius: 16px;
+  background-color: #000;
+  border: 1px solid #000;
+
+  color: #fff;
+  font-size: 16px;
+  transition: .2s ;
+}
+.blackBtn:hover {
+  background-color: rgba(44, 44, 44, 0.89);
+  border: 1px solid #000;
 }
 
