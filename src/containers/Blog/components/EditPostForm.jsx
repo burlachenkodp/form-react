@@ -2,13 +2,16 @@ import React, { useEffect, useState } from "react";
 import "./EditPostForm.css";
 import CancelIcon from "@mui/icons-material/Cancel";
 
-export const EditPostForm = (props) => {
-  const [postTitle, setPosTitle] = useState(props.selectedPost.title);
+export const EditPostForm = ({
+  handleEditFormHide,
+  selectedPost,
+  editBlogPost,
+}) => {
+  const [postTitle, setPosTitle] = useState(selectedPost.title);
   const [postDescription, setPostDescription] = useState(
-    props.selectedPost.description
+    selectedPost.description
   );
-/* { handleEditFormHide, 
-selectedPost, } */
+
   const handlePostTitleChange = (e) => {
     setPosTitle(e.target.value);
   };
@@ -17,49 +20,47 @@ selectedPost, } */
   };
 
   const savePost = (e) => {
-    e.preventDefault();
-    const post = {
-      id: props.selectedPost.id,
+/*     e.preventDefault();
+________________________________________________
+
+ПЕРЕСМОТРИ ПОЧЕМУ ЗДЕСЬ СТОИТ ЭТА ФУНКЦИЯ!!!!!!
+_________________________________________________
+
+
+ */    const post = {
+      id: selectedPost.id,
       title: postTitle,
       description: postDescription,
-      liked: props.selectedPost.liked,
+      liked: selectedPost.liked,
     };
-    props.editBlogPost(post);
-    props.handleEditFormHide();
+    editBlogPost(post);
+    handleEditFormHide();
   };
 
   useEffect(() => {
     const handleEscape = (e) => {
       if (e.key === `Escape`) {
-        props.handleEditFormHide();
+        handleEditFormHide();
       }
     };
     document.addEventListener("keydown", handleEscape);
 
     return () => {
       document.removeEventListener("keydown", handleEscape);
+      console.log("unmount esc listener");
     };
-  }, [props]);
+  }, [handleEditFormHide]);
 
-  useEffect(() => {
-    const handleSubmit = (e) => {
-      if (e.key === "Enter" || e.key === "NumpadEnter") {
-        e.preventDefault();
-        props.handleEditFormHide();
-      }
-    };
-    document.addEventListener("keydown", handleSubmit);
-    return () => {
-      document.removeEventListener("keydown", handleSubmit);
-    };
-  }, [props]);
+  function enterSubmit(e) {
+    if (e.key === "Enter" || e.key === "NumpadEnter") {
+      savePost();
+    }
+    return;
+  }
 
- 
-
-  const handleEditFormHide = props.handleEditFormHide;
   return (
     <>
-      <form className="editPostForm" onSubmit={savePost}>
+      <form className="editPostForm" onSubmit={savePost} onKeyUp={enterSubmit}>
         <button onClick={handleEditFormHide} className="hideBtn">
           <CancelIcon />
         </button>
